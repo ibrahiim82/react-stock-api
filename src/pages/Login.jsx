@@ -14,7 +14,7 @@ import { object, string } from "yup";
 const Login = () => {
   const loginSchema = object({
     password: string().required(),
-    email: string().email("Lütfen geçerli email giriniz").required,
+    email: string().email("Lütfen geçerli email giriniz").required(),
   });
 
   return (
