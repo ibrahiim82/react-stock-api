@@ -11,6 +11,8 @@ import { Button } from "@mui/material"
 import { Formik, Form } from "formik"
 
 const Login = () => {
+  const loginSchema={}
+
     return (
     <Container maxWidth="lg">
       <Grid
@@ -47,6 +49,22 @@ const Login = () => {
           >
             Login
           </Typography>
+
+            <Formik
+            initialValues={{email:"", password:""}}
+            //normalde validate kullanılır ama third (üçüncü) party kütüphane kullanıyorsak validationSchema kullanılır!!
+            validationSchema={loginSchema}
+            onSubmit={(values,actions)=>{
+              //POST (login)
+              //Formu temizle
+              //Mesaj (Toast)
+              //Routing (stock)
+              //Global state güncellemesi
+              
+            }}
+            >
+              
+            </Formik>
 
           <Box
             component="form"
