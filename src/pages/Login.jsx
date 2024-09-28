@@ -64,7 +64,7 @@ const Login = () => {
               actions.setSubmitting(false) //isSubmitting (boolean)
             }}
           >
-            {({isSubmitting}) => (
+            {({isSubmitting,handleChange,values}) => (
               <Form>
                 <Box
                   component="form"
@@ -76,6 +76,8 @@ const Login = () => {
                     id="email"
                     type="email"
                     variant="outlined"
+                    onChange={handleChange}
+                    value={values.email}
                   />
                   <TextField
                     label="password"
@@ -83,6 +85,7 @@ const Login = () => {
                     id="password"
                     type="password"
                     variant="outlined"
+                    value={values.password}
                   />
                   <Button variant="contained" type="submit" disabled={isSubmitting}>
                     Submit
