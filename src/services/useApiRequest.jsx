@@ -48,12 +48,12 @@ const useApiRequests = () => {
   }
   
   const logout = async () => {
+    dispatch(fetchStart())
     try {
       await axios(`${process.env.REACT_APP_BASE_URL}/auth/logout`,{headers:{Authorization: `Token ${token}`},
       })
-      // dispatch(fetchStart())
-      // dispatch(registerSuccess(data))
-      // navigate("/stock")
+      dispatch(logoutSuccess())
+      navigate("/")
     } catch (error) {
       // dispatch(fetchFail())
     }
