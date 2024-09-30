@@ -1,7 +1,7 @@
 import axios from "axios"
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify"
 import { useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { fetchFail, fetchStart, loginSuccess,registerSuccess } from "../features/authSlice"
 
 //? Main commnet
@@ -11,6 +11,7 @@ import { fetchFail, fetchStart, loginSuccess,registerSuccess } from "../features
 const useApiRequests = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const {token} = useSelector(state=> state.auth)
 
   const login = async (userData) => {
     // const BASE_URL = "https://14163.fullstack.clarusway.com"
@@ -46,9 +47,20 @@ const useApiRequests = () => {
     }
   }
   
-  const logout = async () => {}
+  const logout = async () => {
+    try {
+      await axios(`${process.env.REACT_APP_BASE_URL}/auth/logout`,{headers:{Authorization: `Token ${token}`},
+      })
+      // dispatch(fetchStart())
+      // dispatch(registerSuccess(data))
+      // navigate("/stock")
+    } catch (error) {
+      // dispatch(fetchFail())
+    }
+  }
+  
 
-  return { login, register }
+  return { login, register, logout }
 }
 
 export default useApiRequests

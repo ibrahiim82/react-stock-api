@@ -18,6 +18,13 @@ const authSlice = createSlice({
       state.username = payload.user.username
       state.loading = false
     },
+    //? Register işlemi için ayrı bir action creator fonksiyonun yazılması
+    //? Register ile Login arasında bazı farklılıklar olduğu için ayrı bir fonksiyon yazıldı.
+    registerSuccess: (state, { payload }) => {
+      state.loading = false
+      state.username = payload.data.username
+      state.token = payload.token
+    },
     fetchFail: (state) => {
       state.loading = false
       state.error = true
@@ -25,5 +32,6 @@ const authSlice = createSlice({
   },
 })
 
-export const { fetchStart, loginSuccess, fetchFail } = authSlice.actions
+export const { fetchStart, loginSuccess, registerSuccess, fetchFail } =
+  authSlice.actions
 export default authSlice.reducer
