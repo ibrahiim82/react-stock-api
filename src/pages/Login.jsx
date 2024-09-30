@@ -10,11 +10,25 @@ import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { Formik, Form } from "formik";
 import { object, string } from "yup";
+import useApiRequests from "../services/useApiRequests";
 
 const Login = () => {
+  const { login } = useApiRequests();
   const loginSchema = object({
-    password: string().required(),
-    email: string().email("Lütfen geçerli email giriniz").required(),
+    password: string()
+      .required("Şifre zorunludur")
+      .min(8, "Şifre en az 8 karekter içermelidir")
+      .max(16, "Şifre en fazla 16 karekter içermelidir")
+      .matches(/[a-z]+/, "Şifre en az bir küçük harf içermelidir")
+      .matches(/[A-Z]+/, "Şifre en az bir büyük harf içermelidir")
+      .matches(
+        /[@$!%*?&]+/,
+        "Şifre en az bir özel karakter (@$!%*?&) içermelidir"
+      ),
+
+    email: string()
+      .email("Lütfen geçerli email giriniz")
+      .required("Email zorunludur"),
   });
 
   return (
@@ -60,6 +74,7 @@ const Login = () => {
             validationSchema={loginSchema}
             onSubmit={(values, actions) => {
               //POST (login)
+              login(values);
               //Formu temizle
               //Mesaj (Toast)
               //Routing (stock)
@@ -68,7 +83,7 @@ const Login = () => {
               actions.setSubmitting(false); //isSubmitting (boolean)
             }}
           >
-            {({ isSubmitting, handleChange, values, touched, errors }) => (
+            {({ isSubmitting, handleChange, handleBlur, values, touched, errors }) => (
               <Form>
                 <Box
                   component="form"
@@ -83,6 +98,7 @@ const Login = () => {
                     onChange={handleChange}
                     value={values.email}
                     error={touched.email && Boolean(errors.email)}
+                    onBlur={handleBlur}
                     helperText={errors.email}
                   />
                   <TextField
@@ -94,6 +110,7 @@ const Login = () => {
                     onChange={handleChange}
                     value={values.password}
                     error={touched.password && Boolean(errors.password)}
+                    onBlur={handleBlur}
                     helperText={errors.password}
                   />
                   <Button

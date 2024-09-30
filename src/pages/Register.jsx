@@ -11,7 +11,6 @@ import { Link, useNavigate } from "react-router-dom"
 import TextField from "@mui/material/TextField"
 
 const Register = () => {
-  const navigate = useNavigate()
 
   return (
     <Container maxWidth="lg">
