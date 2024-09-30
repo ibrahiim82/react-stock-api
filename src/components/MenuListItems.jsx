@@ -24,27 +24,27 @@ const MenuListItems = () => {
     {
         title: "Purchases",
         icon: <ShoppingBasketIcon />,
-        path: "/purchases",
+        path: "/stock/purchases",
       },
       {
         title: "Sales",
         icon: <AttachMoneyIcon />,
-        path: "/sales/",
+        path: "/stock/sales/",
       },
       {
         title: "Firms",
         icon: <StoreIcon />,
-        path: "/firms/",
+        path: "/stock/firms/",
       },
       {
         title: "Brands",
         icon: <StarsIcon />,
-        path: "/brands/",
+        path: "/stock/brands/",
       },
       {
         title: "Products",
         icon: <InventoryIcon />,
-        path: "/products/",
+        path: "/stock/products/",
       },
   ];
 
