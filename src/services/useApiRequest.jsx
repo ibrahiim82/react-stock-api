@@ -7,7 +7,7 @@ import { fetchFail, fetchStart, loginSuccess,registerSuccess } from "../features
 //? Main commnet
 //? Custom hook
 //? Custom hook uygulamanın tüm her yerinde kullanılmak istenen fonksiyonlarını varsa ve
-//? bu yfonksiyonlar işçerisnide Hook çağırmak istyioirsanız Custom Hook yazmak gereklidir.
+//? bu fonksiyonlar işçerisnide Hook çağırmak istyioirsanız Custom Hook yazmak gereklidir.
 const useApiRequests = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
