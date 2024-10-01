@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField"
 import { Form } from "formik"
 import { object, string } from "yup"
 
+
 export const registerSchema = object({
   username: string()
     .max(20, "Kullanıcı adı 10 karakterden az olmalıdır.")
