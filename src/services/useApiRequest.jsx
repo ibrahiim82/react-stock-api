@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchFail, fetchStart, loginSuccess,registerSuccess } from "../features/authSlice"
 
-//? Main commnet
-//? Custom hook
-//? Custom hook uygulamanın tüm her yerinde kullanılmak istenen fonksiyonlarını varsa ve
-//? bu fonksiyonlar işçerisnide Hook çağırmak istyioirsanız Custom Hook yazmak gereklidir.
+// Main commnet
+// Custom hook
+// Custom hook uygulamanın tüm her yerinde kullanılmak istenen fonksiyonlarını varsa ve
+// bu fonksiyonlar içerisnide Hook çağırmak istyioirsanız Custom Hook yazmak gereklidir.
 const useApiRequests = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
