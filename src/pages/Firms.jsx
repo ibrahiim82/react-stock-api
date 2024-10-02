@@ -8,7 +8,7 @@ const Firms = () => {
 
   const getFirm = async () => {
     try {
-      const { data } = await axiosyarn.post(
+      const { data } = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/firms/`,{
           headers: { "Authorization":  `Token ${token}`},
         });
