@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchFail, fetchStart, getFirmsSuccess } from '../features/stockSlice';
+import { fetchFail, fetchStart, getFirmsSuccess, getSalesSuccess } from '../features/stockSlice';
 
 
 const useStockRequests = () => {
