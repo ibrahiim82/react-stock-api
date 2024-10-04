@@ -1,7 +1,11 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import useStockRequests from "../services/useStockRequests"
+import useStockRequests from "../services/useStockRequests";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import FirmCard from "../components/FirmCard";
 
 // export const getFirms = async () => {
 //   try {
@@ -19,20 +23,32 @@ const Firms = () => {
   // const {token} = useSelector((state)=>state.auth)
   // const { getFirms, getSales } = useStockRequests()
 
-
-  const { getStock } = useStockRequests()
-
+  const { getStock } = useStockRequests();
+  const {firms} = useSelector((state) => state.stock)
 
   // sayfa yüklendikten sonra firmaları getir
   useEffect(() => {
     // getFirms()
     // getSales()
-    getStock("firms")
-    getStock("sales")
+    getStock("firms");
   }, []);
 
+  return (
+    <div>
+      <Typography variant="h2" color={"error"} mb={2}>
+        Firms
+      </Typography>
+      <Button variant="contained">NEW FIRM</Button>
 
-  return <div>Firms</div>;
+      <Grid container>
+        {firms.map((firm) => (
+          <Grid item >
+            <FirmCard firm = {firm} />
+          </Grid>
+        ))}
+      </Grid>
+    </div>
+  );
 };
 
 export default Firms;
