@@ -8,11 +8,11 @@ import {
   // getSalesSuccess,
   getStockSuccess,
 } from "../features/stockSlice";
-import useAxios from "./useAxios"
+import useAxios from "./useAxios";
 
 const useStockRequests = () => {
   // const { token } = useSelector((state) => state.auth);
-  const {axiosToken} = useAxios()
+  const { axiosToken } = useAxios();
   const dispatch = useDispatch();
 
   // const getFirms = async () => {
@@ -31,7 +31,6 @@ const useStockRequests = () => {
   //     console.log(error);
   //   }
   // };
-
 
   // const getSales = async () => {
   //   dispatchEvent(fetchStart());
@@ -69,18 +68,28 @@ const useStockRequests = () => {
   //   }
 
   const getStock = async (path) => {
-    dispatch(fetchStart())
+    dispatch(fetchStart());
     try {
-      const { data } = await axiosToken.get(path)
-      dispatch(getStockSuccess({ data: data.data, path }))
+      const { data } = await axiosToken.get(path);
+      dispatch(getStockSuccess({ data: data.data, path }));
     } catch (error) {
-      dispatch(fetchFail())
-      console.log(error)
+      dispatch(fetchFail());
+      console.log(error);
     }
-  }
+  };
+
+  const deleteStock = async (path,id) => {
+    dispatch(fetchStart());
+    try {
+      await axiosToken.delete(`{path}/${id}`);
+      // dispatch(getStockSuccess({ data: data.data, path }));
+    } catch (error) {
+      dispatch(fetchFail());
+    }
+  };
 
   // return {getFirms, getSales};
-  return {getStock}
+  return { getStock, deleteStock };
 };
 
 export default useStockRequests;

@@ -7,15 +7,18 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
+import { butonStyle } from "../style/globalStyles";
+import useStockRequests from "../services/useStockRequests";
 
 export default function FirmCard({ firm }) {
+  const deleteStock = useStockRequests();
   return (
     <Card
       sx={{
         display: "flex",
         flexDirection: "column",
-        justifyContent:"space-between",
-        alignItems:"center",
+        justifyContent: "space-between",
+        alignItems: "center",
         width: "300",
         height: "400",
         p: 2,
@@ -36,15 +39,18 @@ export default function FirmCard({ firm }) {
         alt={firm.name}
         height="140"
         image={firm.image}
-        sx={{objectFit:"contain"}}
+        sx={{ objectFit: "contain" }}
       />
 
       <Typography variant="body2" sx={{ color: "text.secondary", mt: 2 }}>
         {firm.phone}
       </Typography>
       <CardActions>
-        <DeleteOutlineIcon />
-        <EditIcon />
+        <DeleteOutlineIcon
+          sx={butonStyle}
+          onClick={() => deleteStock("firms", firm._id)}
+        />
+        <EditIcon sx={butonStyle} />
       </CardActions>
     </Card>
   );

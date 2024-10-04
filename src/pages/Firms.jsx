@@ -23,7 +23,7 @@ const Firms = () => {
   // const {token} = useSelector((state)=>state.auth)
   // const { getFirms, getSales } = useStockRequests()
 
-  const { getStock } = useStockRequests();
+  const {getStock} = useStockRequests();
   const {firms} = useSelector((state) => state.stock)
 
   // sayfa yüklendikten sonra firmaları getir
@@ -40,9 +40,9 @@ const Firms = () => {
       </Typography>
       <Button variant="contained" sx={{mb:2}} >NEW FIRM</Button>
 
-      <Grid container>
+      <Grid container justifyContent={"center"} gap={"2"} >
         {firms.map((firm) => (
-          <Grid item >
+          <Grid item key={firm._id} >
             <FirmCard firm = {firm} />
           </Grid>
         ))}
