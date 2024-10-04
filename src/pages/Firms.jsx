@@ -38,7 +38,7 @@ const Firms = () => {
       <Typography variant="h2" color={"error"} mb={2}>
         Firms
       </Typography>
-      <Button variant="contained">NEW FIRM</Button>
+      <Button variant="contained" sx={{mb:2}} >NEW FIRM</Button>
 
       <Grid container>
         {firms.map((firm) => (

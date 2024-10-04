@@ -18,7 +18,7 @@ export default function FirmCard({ firm }) {
         alignItems:"center",
         width: "300",
         height: "400",
-        p: 3,
+        p: 2,
       }}
     >
       <CardContent>
@@ -36,6 +36,7 @@ export default function FirmCard({ firm }) {
         alt={firm.name}
         height="140"
         image={firm.image}
+        sx={{objectFit:"contain"}}
       />
 
       <Typography variant="body2" sx={{ color: "text.secondary", mt: 2 }}>
