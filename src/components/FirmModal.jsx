@@ -1,10 +1,10 @@
-import {useState} from "react"
-import Box from "@mui/material/Box"
-import Button from "@mui/material/Button"
-import Typography from "@mui/material/Typography"
-import Modal from "@mui/material/Modal"
-import TextField from "@mui/material/TextField"
-
+import { useState } from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import TextField from "@mui/material/TextField";
+import useStockRequests from "../services/useStockRequests";
 
 const style = {
   position: "absolute",
@@ -16,22 +16,32 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-}
+};
 
 export default function FirmModal(open, handleClose) {
-//   const [open, setOpen] = React.useState(false)
-//   const handleOpen = () => setOpen(true)
-//   const handleClose = () => setOpen(false)
+  //   const [open, setOpen] = React.useState(false)
+  //   const handleOpen = () => setOpen(true)
+  //   const handleClose = () => setOpen(false)
 
-    const [data,setData] = useState({
-        image:"",
-        address:"",
-        phone:"",
-        name:"",
-    })
-    const handleChange = (e) => {
-        setData({...data,[e.target.name]:e.target.value})
-    }
+  const { postStock } = useStockRequests();
+
+  const initialState = { image: "", address: "", phone: "", name: "" };
+
+  const [data, setData] = useState(initialState);
+
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    //POST Request
+    postStock("firms", data);
+    //Reset form
+    setData(initialState);
+    //close modal
+    handleClose()
+  };
 
   return (
     <div>
@@ -42,7 +52,11 @@ export default function FirmModal(open, handleClose) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <Box
+            sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+            component="form"
+            onSubmit={handleSubmit}
+          >
             <TextField
               label="Firm Name"
               name="name"
@@ -50,6 +64,8 @@ export default function FirmModal(open, handleClose) {
               type="text"
               variant="outlined"
               value={data.name}
+              onChange={handleChange}
+              required
             />
             <TextField
               label="Phone"
@@ -59,6 +75,7 @@ export default function FirmModal(open, handleClose) {
               variant="outlined"
               value={data.phone}
               onChange={handleChange}
+              required
             />
             <TextField
               label="Address"
@@ -67,6 +84,8 @@ export default function FirmModal(open, handleClose) {
               type="text"
               variant="outlined"
               value={data.address}
+              onChange={handleChange}
+              required
             />
             <TextField
               label="Image"
@@ -75,13 +94,13 @@ export default function FirmModal(open, handleClose) {
               type="url"
               variant="outlined"
               value={data.image}
+              onChange={handleChange}
+              required
             />
-            <Button variant="contained" >
-                Submit
-            </Button>
+            <Button variant="contained">Submit</Button>
           </Box>
         </Box>
       </Modal>
     </div>
-  )
+  );
 }
