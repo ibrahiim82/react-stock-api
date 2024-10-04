@@ -47,12 +47,12 @@ const Firms = () => {
         NEW FIRM
       </Button>
 
-      <FirmModal />
+      <FirmModal data={data} setData={setData}/>
 
       <Grid container justifyContent={"center"} gap={"2"}>
         {firms?.map((firm, index) => (
           <Grid item key={index}>
-            <FirmCard firm={firm} />
+            <FirmCard firm={firm} handleOpen={handleOpen} data={data} setData={setData}/>
           </Grid>
         ))}
       </Grid>

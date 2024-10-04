@@ -18,7 +18,7 @@ const style = {
   p: 4,
 };
 
-export default function FirmModal(open, handleClose) {
+export default function FirmModal(open, handleClose, data, setData) {
   //   const [open, setOpen] = React.useState(false)
   //   const handleOpen = () => setOpen(true)
   //   const handleClose = () => setOpen(false)
@@ -38,7 +38,7 @@ export default function FirmModal(open, handleClose) {
     //POST Request
     postStock("firms", data);
     //Reset form
-    setData(initialState);
+    setData({ image: "", address: "", phone: "", name: "" });
     //close modal
     handleClose()
   };
