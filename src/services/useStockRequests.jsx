@@ -83,6 +83,7 @@ const useStockRequests = () => {
     try {
       await axiosToken.delete(`{path}/${id}`);
       // dispatch(getStockSuccess({ data: data.data, path }));
+      getStock(path)
     } catch (error) {
       dispatch(fetchFail());
     }

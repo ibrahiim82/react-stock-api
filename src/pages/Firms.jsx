@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import FirmCard from "../components/FirmCard";
+import FirmModal from "../components/FirmModal";
 
 // export const getFirms = async () => {
 //   try {
@@ -23,8 +24,8 @@ const Firms = () => {
   // const {token} = useSelector((state)=>state.auth)
   // const { getFirms, getSales } = useStockRequests()
 
-  const {getStock} = useStockRequests();
-  const {firms} = useSelector((state) => state.stock)
+  const { getStock } = useStockRequests();
+  const { firms } = useSelector((state) => state.stock);
 
   // sayfa yüklendikten sonra firmaları getir
   useEffect(() => {
@@ -38,12 +39,16 @@ const Firms = () => {
       <Typography variant="h2" color={"error"} mb={2}>
         Firms
       </Typography>
-      <Button variant="contained" sx={{mb:2}} >NEW FIRM</Button>
+      <Button variant="contained" sx={{ mb: 2 }}>
+        NEW FIRM
+      </Button>
 
-      <Grid container justifyContent={"center"} gap={"2"} >
-        {firms.map((firm) => (
-          <Grid item key={firm._id} >
-            <FirmCard firm = {firm} />
+      <FirmModal/>
+
+      <Grid container justifyContent={"center"} gap={"2"}>
+        {firms?.map((firm, index) => (
+          <Grid item key={index}>
+            <FirmCard firm={firm} />
           </Grid>
         ))}
       </Grid>
