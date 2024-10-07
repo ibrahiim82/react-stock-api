@@ -7,6 +7,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { useSelector } from "react-redux";
 
 const style = {
   position: "absolute",
@@ -22,6 +23,7 @@ const style = {
 
 export default function ProductModal({ open, handleClose, data, setData }) {
   const { postStock, putStock } = useStockRequests();
+  const { categories } = useSelector((state) => state.categories);
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -58,17 +60,17 @@ export default function ProductModal({ open, handleClose, data, setData }) {
             onSubmit={handleSubmit}
           >
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Age</InputLabel>
+              <InputLabel id="categories">Categories</InputLabel>
               <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                labelId="categories"
+                id="categories"
                 // value={age}
-                label="Age"
+                label="categories"
                 onChange={handleChange}
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {categories.map((item) => (
+                  <MenuItem value={10}>Ten</MenuItem>
+                ))}
               </Select>
             </FormControl>
             <TextField
