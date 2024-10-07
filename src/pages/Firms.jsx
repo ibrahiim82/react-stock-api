@@ -27,9 +27,15 @@ const Firms = () => {
   const { getStock } = useStockRequests();
   const { firms } = useSelector((state) => state.stock);
 
+  const initialState = { image: "", address: "", phone: "", name: "" };
+  const [data, setData] = useState(initialState);
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setData(initialState);
+  };
 
   // sayfa yüklendikten sonra firmaları getir
   useEffect(() => {
@@ -47,7 +53,12 @@ const Firms = () => {
         NEW FIRM
       </Button>
 
-      <FirmModal data={data} setData={setData} />
+      <FirmModal
+        open={open}
+        handleClose={handleClose}
+        data={data}
+        setData={setData}
+      />
 
       <Grid container justifyContent={"center"} gap={"2"}>
         {firms?.map((firm, index) => (
