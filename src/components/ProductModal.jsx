@@ -22,8 +22,8 @@ const style = {
 };
 
 export default function ProductModal({ open, handleClose, data, setData }) {
-  const { postStock, putStock } = useStockRequests();
-  const { categories } = useSelector((state) => state.categories);
+  const { postStock } = useStockRequests();
+  const { categories, brands } = useSelector((state) => state.stock);
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -31,17 +31,7 @@ export default function ProductModal({ open, handleClose, data, setData }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (data._id) {
-      //? put
-      putStock("firms", data);
-    } else {
-      //? post
-      postStock("firms", data);
-    }
-    //? Reset form
-    setData({ image: "", address: "", phone: "", name: "" });
-    //? close modal
+    postStock("products", data);
     handleClose();
   };
 
@@ -64,12 +54,30 @@ export default function ProductModal({ open, handleClose, data, setData }) {
               <Select
                 labelId="categories"
                 id="categories"
+                value={data.categoryId}
                 // value={age}
                 label="categories"
                 onChange={handleChange}
+                required
               >
                 {categories.map((item) => (
-                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl fullWidth>
+              <InputLabel id="brands">Brands</InputLabel>
+              <Select
+                labelId="brands"
+                id="brands"
+                value={data.brandId}
+                // value={age}
+                label="brands"
+                onChange={handleChange}
+                required
+              >
+                {brands.map((item) => (
+                  <MenuItem value={item._id}>{item.name}</MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -85,7 +93,7 @@ export default function ProductModal({ open, handleClose, data, setData }) {
             />
 
             <Button variant="contained" type="submit">
-              {data._id ? "UPDATE FIRM" : "ADD FIRM"}
+               ADD PRODUCT
             </Button>
           </Box>
         </Box>
