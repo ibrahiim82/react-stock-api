@@ -1,35 +1,48 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 
 const columns = [
   { field: "_id", headerName: "#", width: 90 },
   {
-    field: "categories",
+    field: "categoryId",
     headerName: "Categories",
     width: 150,
+    // valueGetter: (value, row) => {
+    //     console.log("ROW:", row, "VALUE:", value);
+    // //    return row.categoryId.name
+    //       return value.name
+    // },  17.satır alternatif kısa yol
+    valueGetter: (value) => value.name,
     editable: true,
   },
   {
-    field: "lastName",
-    headerName: "Last name",
+    field: "brandId",
+    headerName: "Brands",
     width: 150,
     editable: true,
   },
   {
-    field: "age",
-    headerName: "Age",
+    field: "name",
+    headerName: "Name",
+    type: "text",
+    width: 110,
+    editable: true,
+  },
+  {
+    field: "stock",
+    headerName: "Stock",
     type: "number",
     width: 110,
     editable: true,
   },
   {
-    field: "fullName",
-    headerName: "Full name",
-    description: "This column has a value getter and is not sortable.",
-    sortable: false,
-    width: 160,
-    valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
+    field: "actions",
+    type: "actions",
+    getActions: (param) => [
+      <GridActionsCellItem icon={DeleteForeverIcon} label="Delete" />,
+    ],
   },
 ];
 
