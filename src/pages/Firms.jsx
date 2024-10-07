@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import useStockRequests from "../services/useStockRequests";
 import Typography from "@mui/material/Typography";
@@ -28,6 +28,7 @@ const Firms = () => {
   const { firms } = useSelector((state) => state.stock);
 
   const initialState = { image: "", address: "", phone: "", name: "" };
+  
   const [data, setData] = useState(initialState);
 
   const [open, setOpen] = React.useState(false);

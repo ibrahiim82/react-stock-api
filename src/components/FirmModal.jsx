@@ -19,15 +19,13 @@ const style = {
 };
 
 export default function FirmModal(open, handleClose, data, setData) {
-    const [open, setOpen] = React.useState(false)
-    const handleOpen = () => setOpen(true)
-    const handleClose = () => setOpen(false)
+    // const [open, setOpen] = React.useState(false)
+    // const handleOpen = () => setOpen(true)
+    // const handleClose = () => setOpen(false)
 
-  const { postStock } = useStockRequests();
+  const { postStock, putStock } = useStockRequests();
 
   const initialState = { image: "", address: "", phone: "", name: "" };
-
-  const [data, setData] = useState(initialState);
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });

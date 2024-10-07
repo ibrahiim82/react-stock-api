@@ -10,7 +10,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { butonStyle } from "../style/globalStyles";
 import useStockRequests from "../services/useStockRequests";
 
-export default function FirmCard({ firm, handleOpen }) {
+export default function FirmCard({ firm, handleOpen, setData }) {
   const deleteStock = useStockRequests();
   return (
     <Card
