@@ -1,6 +1,6 @@
-import * as React from "react"
-import Box from "@mui/material/Box"
-import { DataGrid } from "@mui/x-data-grid"
+import * as React from "react";
+import Box from "@mui/material/Box";
+import { DataGrid } from "@mui/x-data-grid";
 
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
@@ -31,7 +31,7 @@ const columns = [
     width: 160,
     valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
   },
-]
+];
 
 const rows = [
   { id: 1, lastName: "Snow", firstName: "Jon", age: 14 },
@@ -43,7 +43,7 @@ const rows = [
   { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
   { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
   { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
-]
+];
 
 export default function ProductTable() {
   return (
@@ -63,5 +63,5 @@ export default function ProductTable() {
         disableRowSelectionOnClick
       />
     </Box>
-  )
+  );
 }
