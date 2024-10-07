@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify"
 import {
   fetchFail,
   fetchStart,
@@ -89,8 +90,33 @@ const useStockRequests = () => {
     }
   };
 
-  // return {getFirms, getSales};
-  return { getStock, deleteStock };
-};
+  const postStock = async (path, data) => {
+    dispatch(fetchStart())
+    try {
+      await axiosToken.post(path, data)
+      toastSuccessNotify(`Veri ekleme başarılı.`)
+      getStock(path)
+    } catch (error) {
+      toastErrorNotify("Ekleme işlemi başarısız oldu.")
+      dispatch(fetchFail())
+    }
+  }
+
+  const putStock = async (path, data) => {
+    dispatch(fetchStart())
+    try {
+      await axiosToken.put(`/${path}/${data._id}`, data)
+      toastSuccessNotify(`Güncelleme başarılı.`)
+      getStock(path)
+    } catch (error) {
+      dispatch(fetchFail())
+      toastErrorNotify("Güncelleme başarısız oldu.")
+      console.log(error)
+    }
+  }
+
+  //   return { getFirms, getSales }
+  return { getStock, deleteStock, postStock, putStock }
+}
 
 export default useStockRequests;
