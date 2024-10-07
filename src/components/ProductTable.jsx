@@ -3,10 +3,10 @@ import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 
 const columns = [
-  { field: "id", headerName: "ID", width: 90 },
+  { field: "_id", headerName: "#", width: 90 },
   {
-    field: "firstName",
-    headerName: "First name",
+    field: "categories",
+    headerName: "Categories",
     width: 150,
     editable: true,
   },
@@ -59,7 +59,6 @@ export default function ProductTable() {
           },
         }}
         pageSizeOptions={[5]}
-        checkboxSelection
         disableRowSelectionOnClick
       />
     </Box>
