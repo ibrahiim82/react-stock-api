@@ -1,8 +1,12 @@
-import Box from "@mui/material/Box"
-import Button from "@mui/material/Button"
-import Modal from "@mui/material/Modal"
-import TextField from "@mui/material/TextField"
-import useStockRequests from "../services/useStockRequests"
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import TextField from "@mui/material/TextField";
+import useStockRequests from "../services/useStockRequests";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const style = {
   position: "absolute",
@@ -14,30 +18,30 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-}
+};
 
 export default function ProductModal({ open, handleClose, data, setData }) {
-  const { postStock, putStock } = useStockRequests()
+  const { postStock, putStock } = useStockRequests();
 
   const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value })
-  }
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (data._id) {
       //? put
-      putStock("firms", data)
+      putStock("firms", data);
     } else {
       //? post
-      postStock("firms", data)
+      postStock("firms", data);
     }
     //? Reset form
-    setData({ image: "", address: "", phone: "", name: "" })
+    setData({ image: "", address: "", phone: "", name: "" });
     //? close modal
-    handleClose()
-  }
+    handleClose();
+  };
 
   return (
     <div>
@@ -53,6 +57,20 @@ export default function ProductModal({ open, handleClose, data, setData }) {
             component="form"
             onSubmit={handleSubmit}
           >
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Age</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                // value={age}
+                label="Age"
+                onChange={handleChange}
+              >
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </FormControl>
             <TextField
               label="Firm Name"
               name="name"
@@ -71,5 +89,5 @@ export default function ProductModal({ open, handleClose, data, setData }) {
         </Box>
       </Modal>
     </div>
-  )
+  );
 }
