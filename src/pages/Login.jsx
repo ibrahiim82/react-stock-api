@@ -15,6 +15,7 @@ import useApiRequests from "../services/useApiRequests";
 
 const Login = () => {
   const { login } = useApiRequests();
+
   const loginSchema = object({
     password: string()
       .required("Şifre zorunludur")
@@ -84,7 +85,14 @@ const Login = () => {
               actions.setSubmitting(false); //isSubmitting (boolean)
             }}
           >
-            {({ isSubmitting, handleChange, handleBlur, values, touched, errors }) => (
+            {({
+              isSubmitting,
+              handleChange,
+              handleBlur,
+              values,
+              touched,
+              errors,
+            }) => (
               <Form>
                 <Box
                   component="form"

@@ -39,7 +39,7 @@ export default function ProductTable() {
     {
       field: "name",
       headerName: "Name",
-      type: "text",
+      type: "number",
       flex: 1,
       minWidth: 140,
       align: "center",

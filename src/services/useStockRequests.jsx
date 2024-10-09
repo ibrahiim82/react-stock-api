@@ -74,8 +74,9 @@ const useStockRequests = () => {
       const { data } = await axiosToken.get(path);
       dispatch(getStockSuccess({ data: data.data, path }));
     } catch (error) {
-      dispatch(fetchFail());
-      console.log(error);
+      toastErrorNotify(`${path} çekme başarısız oldu.`)
+      dispatch(fetchFail())
+      console.log(error)
     }
   };
 
@@ -85,8 +86,10 @@ const useStockRequests = () => {
       await axiosToken.delete(`{path}/${id}`);
       // dispatch(getStockSuccess({ data: data.data, path }));
       getStock(path)
+      toastSuccessNotify(`Silme işlemi başarılı.`)
     } catch (error) {
       dispatch(fetchFail());
+      toastErrorNotify("Silme işlemi başarısız oldu.")
     }
   };
 

@@ -1,49 +1,59 @@
-import { useEffect, useState } from "react"
-import useStockRequests from "../services/useStockRequests"
+import { useEffect, useState } from "react";
+import useStockRequests from "../services/useStockRequests";
 
-import Typography from "@mui/material/Typography"
-import Button from "@mui/material/Button"
-import { useSelector } from "react-redux"
-import ProductModal from "../components/ProductModal"
-import ProductTable from "../components/ProductTable"
-
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import { useSelector } from "react-redux";
+import ProductModal from "../components/ProductModal";
+import ProductTable from "../components/ProductTable";
+import {
+  ErrorMessage,
+  NoDataMessage,
+  TableSkeleton,
+} from "../components/Messages";
 
 const Products = () => {
-  const { getStock } = useStockRequests()
+  const { getStock } = useStockRequests();
 
-  const {error} = useSelector((state)=> state.error)
+  const { error, products, loading } = useSelector((state) => state.error);
 
-  const initialState = { categoryId: "", brandId: "", name: "", name: "" }
-  const [data, setData] = useState(initialState)
+  const initialState = { categoryId: "", brandId: "", name: "", name: "" };
+  const [data, setData] = useState(initialState);
 
-  const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true)
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
   const handleClose = () => {
-    setOpen(false)
-    setData(initialState)
-  }
+    setOpen(false);
+    setData(initialState);
+  };
 
   useEffect(() => {
-    getStock("products")
-    getStock("categories")
-    getStock("brands")
-  }, [])
+    getStock("products");
+    getStock("categories");
+    getStock("brands");
+  }, []);
 
   return (
     <div>
       <Typography variant="h5" color={"error"} mb={2}>
         Products
       </Typography>
-      <Button variant="contained" sx={{ mb: 2 }} onClick={handleOpen}>
+      <Button
+        variant="contained"
+        sx={{ mb: 2 }}
+        onClick={handleOpen}
+        disabled={error}
+      >
         NEW PRODUCT
       </Button>
 
       {/* {error && <ErrorMessage/>}
       {!error && <ProductTable/>} */}
 
-      {!Products.length && <NoDataMessage/>}
-      {Products.length > 0 && <ProductTable/>}
-      
+      {loading && <TableSkeleton />}
+
+      {!Products.length && <NoDataMessage />}
+      {Products.length > 0 && <ProductTable />}
 
       <ProductModal
         open={open}
@@ -52,7 +62,7 @@ const Products = () => {
         setData={setData}
       />
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;

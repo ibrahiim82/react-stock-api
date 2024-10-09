@@ -28,10 +28,9 @@ const Firms = () => {
   const { firms } = useSelector((state) => state.stock);
 
   const initialState = { image: "", address: "", phone: "", name: "" };
-  
   const [data, setData] = useState(initialState);
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
@@ -45,12 +44,13 @@ const Firms = () => {
     getStock("firms");
   }, []);
 
+  console.log(firms)
   return (
     <div>
       <Typography variant="h2" color={"error"} mb={2}>
         Firms
       </Typography>
-      <Button variant="contained" sx={{ mb: 2 }}>
+      <Button variant="contained" sx={{ mb: 2 }} onClick={handleOpen}>
         NEW FIRM
       </Button>
 
