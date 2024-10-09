@@ -10,9 +10,16 @@ import Box from "@mui/material/Box";
 import { useSelector } from "react-redux";
 
 const KPICards = () => {
-    
-  const { sales } = useSelector((state) => state.stock);
-  console.log(sales);
+  const { sales, purchases } = useSelector((state) => state.stock);
+  //   console.log(sales);
+  //   console.log(purchases);
+
+  const totalSales = sales.reduce((acc, sale) => acc + sale.amount, 0);
+  
+  const totalPurchases = purchases.reduce(
+    (acc, purchase) => acc + purchase.amount,
+    0
+  );
 
   const cardData = [
     {
@@ -21,7 +28,8 @@ const KPICards = () => {
       title: "sales",
       bgColor: deepPurple[100],
       color: deepPurple[900],
-      amount: "$44999",
+      // amount: `${totalSales}`,
+      amount: "$" + totalSales.toLocaleString("tr-TR"),
     },
     {
       id: 2,
@@ -29,7 +37,7 @@ const KPICards = () => {
       title: "profit",
       bgColor: pink[100],
       color: pink[800],
-      amount: "$44999",
+      amount: "$" + (totalSales - totalPurchases).toLocaleString("tr-TR"),
     },
     {
       id: 3,
@@ -37,7 +45,7 @@ const KPICards = () => {
       title: "purchases",
       bgColor: green[100],
       color: green[900],
-      amount: "$44999",
+      amount: "$" + totalPurchases.toLocaleString("tr-TR"),
     },
   ];
 
