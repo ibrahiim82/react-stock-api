@@ -67,7 +67,7 @@ const Register = () => {
             }}
 
             //? Component prop'u ile Formumuz harici bir component haline getirilebilir.
-            //? bu sayade daha derli toplu bir validayon yapmak mümkün olacaktır.
+            //? bu sayade daha derli toplu bir validasyon yapmak mümkün olacaktır.
             //? Ancak Formik props'larını bu component'e geçmek gerekir.
             component={(props) => <RegisterForm {...props} />}
           ></Formik>

@@ -15,9 +15,9 @@ import {
 const Products = () => {
   const { getStock } = useStockRequests();
 
-  const { error, products, loading } = useSelector((state) => state.error);
+  const { error, products, loading } = useSelector((state) => state.stock);
 
-  const initialState = { categoryId: "", brandId: "", name: "", name: "" };
+  const initialState = { categoryId: "", brandId: "", name: "" };
   const [data, setData] = useState(initialState);
 
   const [open, setOpen] = useState(false);
@@ -52,8 +52,8 @@ const Products = () => {
 
       {loading && <TableSkeleton />}
 
-      {!Products.length && <NoDataMessage />}
-      {Products.length > 0 && <ProductTable />}
+      {!loading && !products.length && <NoDataMessage />}
+      {!loading && products.length > 0 && <ProductTable />}
 
       <ProductModal
         open={open}
