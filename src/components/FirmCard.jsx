@@ -36,14 +36,14 @@ export default function FirmCard({ firm, handleOpen, setData }) {
 
       <CardMedia
         component="img"
-        alt={firm.name}
+        alt={firm?.name}
         height="140"
-        image={firm.image}
+        image={firm?.image}
         sx={{ objectFit: "contain" }}
       />
 
       <Typography variant="body2" sx={{ color: "text.secondary", mt: 2 }}>
-        {firm.phone}
+        {firm?.phone}
       </Typography>
       <CardActions>
         <DeleteOutlineIcon

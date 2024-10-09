@@ -1,6 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
+import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useSelector } from "react-redux";
 import useStockRequests from "../services/useStockRequests";
@@ -44,6 +44,7 @@ export default function ProductTable() {
       minWidth: 140,
       align: "center",
       headerAlign: "center",
+      width: 140,
     },
     {
       field: "quantity",
@@ -80,6 +81,9 @@ export default function ProductTable() {
         columns={columns}
         disableRowSelectionOnClick
         getRowId={getRowId}
+        slots={{
+          toolbar: GridToolbar,
+        }}
       />
     </Box>
   );

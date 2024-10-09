@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import FirmCard from "../components/FirmCard";
 import FirmModal from "../components/FirmModal";
+import { CardSkeleton, NoDataMessage } from "../components/Messages";
 
 // export const getFirms = async () => {
 //   try {
@@ -25,7 +26,7 @@ const Firms = () => {
   // const { getFirms, getSales } = useStockRequests()
 
   const { getStock } = useStockRequests();
-  const { firms } = useSelector((state) => state.stock);
+  const { firms, loading } = useSelector((state) => state.stock);
 
   const initialState = { image: "", address: "", phone: "", name: "" };
   const [data, setData] = useState(initialState);
@@ -44,7 +45,6 @@ const Firms = () => {
     getStock("firms");
   }, []);
 
-  console.log(firms)
   return (
     <div>
       <Typography variant="h2" color={"error"} mb={2}>
@@ -61,18 +61,27 @@ const Firms = () => {
         setData={setData}
       />
 
-      <Grid container justifyContent={"center"} gap={"2"}>
-        {firms?.map((firm, index) => (
-          <Grid item key={index}>
-            <FirmCard
-              firm={firm}
-              handleOpen={handleOpen}
-              data={data}
-              setData={setData}
-            />
-          </Grid>
-        ))}
-      </Grid>
+      {loading && (
+        <CardSkeleton>
+          <FirmCard />
+        </CardSkeleton>
+      )}
+
+      {!loading && !firms.length && <NoDataMessage />}
+      {!loading && firms.length > 0 && (
+        <Grid container justifyContent={"center"} gap={2}>
+          {firms?.map((firm, index) => (
+            <Grid item key={index}>
+              <FirmCard
+                firm={firm}
+                handleOpen={handleOpen}
+                data={data}
+                setData={setData}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </div>
   );
 };
