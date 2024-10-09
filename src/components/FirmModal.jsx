@@ -19,33 +19,35 @@ const style = {
 };
 
 export default function FirmModal(open, handleClose, data, setData) {
-    // const [open, setOpen] = React.useState(false)
-    // const handleOpen = () => setOpen(true)
-    // const handleClose = () => setOpen(false)
+  // const [open, setOpen] = React.useState(false)
+  // const handleOpen = () => setOpen(true)
+  // const handleClose = () => setOpen(false)
 
   const { postStock, putStock } = useStockRequests();
-
-  const initialState = { image: "", address: "", phone: "", name: "" };
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
+
+  console.log(data);
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (data._id) {
       //? put
-      putStock("firms", data)
+      putStock("firms", data);
     } else {
       //? post
-      postStock("firms", data)
+      postStock("firms", data);
     }
     //? Reset form
-    setData({ image: "", address: "", phone: "", name: "" })
+    setData({ image: "", address: "", phone: "", name: "" });
     //? close modal
-    handleClose()
-  }
+    handleClose();
+  };
 
+  console.log(data);
+  
   return (
     <div>
       <Modal
@@ -100,7 +102,9 @@ export default function FirmModal(open, handleClose, data, setData) {
               onChange={handleChange}
               required
             />
-            <Button variant="contained">{data._id ? "UPDATE FIRM" : "ADD FIRM"}</Button>
+            <Button variant="contained" type="submit">
+              {data._id ? "UPDATE FIRM" : "ADD FIRM"}
+            </Button>
           </Box>
         </Box>
       </Modal>

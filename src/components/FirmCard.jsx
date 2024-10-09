@@ -11,7 +11,7 @@ import { butonStyle } from "../style/globalStyles";
 import useStockRequests from "../services/useStockRequests";
 
 export default function FirmCard({ firm, handleOpen, setData }) {
-  const deleteStock = useStockRequests();
+  const { deleteStock } = useStockRequests();
   return (
     <Card
       sx={{
@@ -50,12 +50,13 @@ export default function FirmCard({ firm, handleOpen, setData }) {
           sx={butonStyle}
           onClick={() => deleteStock("firms", firm._id)}
         />
-        <EditIcon sx={butonStyle} onClick={() =>
-            {
-                setData(firm)
-                handleOpen()
-            }} 
-            />
+        <EditIcon
+          sx={butonStyle}
+          onClick={() => {
+            setData(firm);
+            handleOpen();
+          }}
+        />
       </CardActions>
     </Card>
   );

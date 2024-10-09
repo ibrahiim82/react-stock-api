@@ -27,6 +27,7 @@ export default function ProductModal({ open, handleClose, data, setData }) {
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
+    console.log(e.target.name);
   };
 
   const handleSubmit = (e) => {
@@ -50,26 +51,31 @@ export default function ProductModal({ open, handleClose, data, setData }) {
             onSubmit={handleSubmit}
           >
             <FormControl fullWidth>
-              <InputLabel id="categories">Categories</InputLabel>
+              <InputLabel id="categoryId">Categories</InputLabel>
               <Select
-                labelId="categories"
-                id="categories"
+                labelId="categoryId"
+                id="categoryId"
+                name="categoryId"
                 value={data.categoryId}
                 // value={age}
-                label="categories"
+                label="Categories"
                 onChange={handleChange}
                 required
               >
                 {categories.map((item) => (
-                  <MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>
+                  <MenuItem key={item._id} value={item._id}>
+                    {item.name}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>
+
             <FormControl fullWidth>
               <InputLabel id="brands">Brands</InputLabel>
               <Select
                 labelId="brands"
-                id="brands"
+                id="brandId"
+                name="brandId"
                 value={data.brandId}
                 // value={age}
                 label="brands"
@@ -77,10 +83,13 @@ export default function ProductModal({ open, handleClose, data, setData }) {
                 required
               >
                 {brands.map((item) => (
-                  <MenuItem value={item._id}>{item.name}</MenuItem>
+                  <MenuItem key={item._id} value={item._id}>
+                    {item.name}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>
+            
             <TextField
               label="Firm Name"
               name="name"
@@ -93,7 +102,7 @@ export default function ProductModal({ open, handleClose, data, setData }) {
             />
 
             <Button variant="contained" type="submit">
-               ADD PRODUCT
+              ADD PRODUCT
             </Button>
           </Box>
         </Box>
