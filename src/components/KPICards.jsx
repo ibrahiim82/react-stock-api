@@ -7,8 +7,13 @@ import Avatar from "@mui/material/Avatar";
 import { deepPurple, pink, green } from "@mui/material/colors";
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
+import { useSelector } from "react-redux";
 
 const KPICards = () => {
+    
+  const { sales } = useSelector((state) => state.stock);
+  console.log(sales);
+
   const cardData = [
     {
       id: 1,
