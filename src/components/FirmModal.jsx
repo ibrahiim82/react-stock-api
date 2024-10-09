@@ -29,7 +29,7 @@ export default function FirmModal(open, handleClose, data, setData) {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  console.log(data);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -46,7 +46,6 @@ export default function FirmModal(open, handleClose, data, setData) {
     handleClose();
   };
 
-  console.log(data);
   
   return (
     <div>

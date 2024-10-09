@@ -1,6 +1,6 @@
 import { AreaChart } from "@tremor/react";
 import { useSelector } from "react-redux";
-
+import Stack from "@mui/material/Stack"
 
 const dataFormatter = (number) =>
   `$${Intl.NumberFormat("us").format(number).toString()}`;
@@ -21,7 +21,12 @@ const Charts = () => {
   }))
 
   return (
-    <>
+    <Stack
+      justifyContent={"center"}
+      alignItems={"center"}
+      flexDirection="column"
+      flexWrap={"wrap"}
+    >
       <AreaChart
         className="h-80"
         data={salesData}
@@ -40,7 +45,7 @@ const Charts = () => {
         valueFormatter={dataFormatter}
         yAxisWidth={80}
       />
-    </>
-  );
+    </Stack>
+  )
 };
 export default Charts;
