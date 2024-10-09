@@ -1,38 +1,78 @@
-import MonetiazionOnIcon from "@mui/icons-material/MonetizationOn"
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket"
-import PaymentsIcon from "@mui/icons-material/Payments"
+import MonetiazionOnIcon from "@mui/icons-material/MonetizationOn";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import PaymentsIcon from "@mui/icons-material/Payments";
+import Stack from "@mui/material/Stack";
+import Paper from "@mui/material/Paper";
+import Avatar from "@mui/material/Avatar";
+import { deepPurple, pink, green } from "@mui/material/colors";
+import { Typography } from "@mui/material";
+import Box from "@mui/material/Box";
 
 const KPICards = () => {
-    const cardData = [
-        {
-        id:1,
-        icon:<MonetiazionOnIcon/>,
-        title:"sales",
-        bgColor:"red",
-        color:"darkred",
+  const cardData = [
+    {
+      id: 1,
+      icon: <MonetiazionOnIcon sx={{ fontSize: "2rem" }} />,
+      title: "sales",
+      bgColor: deepPurple[100],
+      color: deepPurple[900],
+      amount: "$44999",
     },
-        {
-        id:2,
-        icon:<ShoppingBasketIcon/>,
-        title:"profit",
-        bgColor:"red",
-        color:"darkred",
-    }
-    ,
-        {
-        id:3,
-        icon:<PaymentsIcon/>,
-        title:"purchases",
-        bgColor:"red",
-        color:"darkred",
-    }
-]
+    {
+      id: 2,
+      icon: <ShoppingBasketIcon sx={{ fontSize: "2rem" }} />,
+      title: "profit",
+      bgColor: pink[100],
+      color: pink[800],
+      amount: "$44999",
+    },
+    {
+      id: 3,
+      icon: <PaymentsIcon sx={{ fontSize: "2rem" }} />,
+      title: "purchases",
+      bgColor: green[100],
+      color: green[900],
+      amount: "$44999",
+    },
+  ];
 
   return (
-    <div>
+    <Stack
+      justifyContent={"center"}
+      alignItems={"center"}
+      flexWrap={"wrap"}
+      flexDirection={"row"}
+      gap={3}
+    >
+      {cardData.map((item) => (
+        <Paper
+          elevation={5}
+          sx={{
+            display: "flex",
+            width: 275,
+            p: 1,
+            gap: 3,
+          }}
+        >
+          <Avatar
+            sx={{
+              width: 60,
+              height: 60,
+              bgColor: item.bgColor,
+              color: item.color,
+              ml: 3,
+            }}
+          >
+            {item.icon}
+          </Avatar>
+          <Box>
+            <Typography variant="button">{item.title}</Typography>
+            <Typography variant="h5">{item.amount}</Typography>
+          </Box>
+        </Paper>
+      ))}
+    </Stack>
+  );
+};
 
-    </div>
-  )
-}
-
-export default KPICards
+export default KPICards;
