@@ -7,8 +7,11 @@ import { useSelector } from "react-redux"
 import ProductModal from "../components/ProductModal"
 import ProductTable from "../components/ProductTable"
 
+
 const Products = () => {
   const { getStock } = useStockRequests()
+
+  const {error} = useSelector((state)=> state.error)
 
   const initialState = { categoryId: "", brandId: "", name: "", name: "" }
   const [data, setData] = useState(initialState)
@@ -35,7 +38,12 @@ const Products = () => {
         NEW PRODUCT
       </Button>
 
-      <ProductTable/>
+      {/* {error && <ErrorMessage/>}
+      {!error && <ProductTable/>} */}
+
+      {!Products.length && <NoDataMessage/>}
+      {Products.length > 0 && <ProductTable/>}
+      
 
       <ProductModal
         open={open}
