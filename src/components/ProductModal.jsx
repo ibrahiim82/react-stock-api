@@ -22,6 +22,7 @@ const style = {
 };
 
 export default function ProductModal({ open, handleClose, data, setData }) {
+  
   const { postStock } = useStockRequests();
   const { categories, brands } = useSelector((state) => state.stock);
 
