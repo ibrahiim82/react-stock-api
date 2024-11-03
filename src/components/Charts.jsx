@@ -1,19 +1,19 @@
-import { AreaChart } from "@tremor/react";
-import { useSelector } from "react-redux";
+import { AreaChart } from "@tremor/react"
+import { useSelector } from "react-redux"
 import Stack from "@mui/material/Stack"
 
 const dataFormatter = (number) =>
-  `$${Intl.NumberFormat("us").format(number).toString()}`;
+  `$${Intl.NumberFormat("tr").format(number).toString()}`
 
 const Charts = () => {
-  const { sales, purchases } = useSelector((state) => state.stock);
+  const { sales, purchases } = useSelector((state) => state.stock)
 
-    console.log(sales);
+  console.log(sales)
 
   const salesData = sales.map((sale) => ({
     salesAmount: sale.amount,
-    date: new Date(sale.createAt).toLocaleDateString("tr-TR"),
-  }));
+    date: new Date(sale.createdAt).toLocaleDateString("tr-TR"),
+  }))
 
   const purchasesData = purchases.map((pur) => ({
     purAmount: pur.amount,
@@ -47,5 +47,5 @@ const Charts = () => {
       />
     </Stack>
   )
-};
-export default Charts;
+}
+export default Charts
