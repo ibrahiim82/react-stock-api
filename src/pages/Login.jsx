@@ -94,10 +94,7 @@ const Login = () => {
               errors,
             }) => (
               <Form>
-                <Box
-                  component="form"
-                  sx={{ display: "flex", flexDirection: "column", gap: 2 }}
-                >
+                <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                   <TextField
                     label="Email"
                     name="email"
